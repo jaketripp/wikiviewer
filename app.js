@@ -88,6 +88,7 @@ function getPageExtracts(param) {
 			}
 		}
 	});
+	$('#main').removeClass('bigMargin');
 }
 
 // search attached to search button
