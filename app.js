@@ -89,12 +89,12 @@ function getPageExtracts(param) {
 	});
 }
 
-// init attached to search button
+// search attached to search button
 // clear current items
 // if search entry is blank, open random article
 // else do the search (getData)
 
-function init() {
+function search() {
 	$('ul').empty();
 	var search = $('#searchbar').val();
 	if (search === '') {
@@ -102,4 +102,18 @@ function init() {
 	}
 	getData(search);
 }
+
+// trigger search with enter key
+function onEnter(){
+	$(document).on("keydown",function(e){
+
+	   var keyCode = e.which || e.keyCode;
+	   if(keyCode == 13) {
+	      search();
+	   }
+
+	});
+}
+
+onEnter();
 
