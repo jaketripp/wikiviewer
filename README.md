@@ -1,4 +1,4 @@
-# Wikiviewer
+# Wiki Viewer
 
 #### Written in JavaScript, HTML, and CSS.
 #### Libaries: Semantic UI, jQuery
