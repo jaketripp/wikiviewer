@@ -18,19 +18,27 @@ body {
 ul {
 	list-style: none;
 	padding: 0;
-	margin: 0;
+	width: 90%;
+	margin: 10px auto;
 	display: flex;
-	flex-flow: column wrap;
-	max-height: 800px;
+	flex-flow: wrap;
 }
 
-a {
-	padding: 16px;
+ul > a {
+	flex: 1 1 300px;
+	width: calc(33.3333333% - 20px);
 	margin: 10px;
+} 
+
+h5 {
+	font-size: 2.618rem;
+}
+
+li {
+	padding: 16px;
 	background-color: white;
 	color: black;
-	max-width: 300px;
-	flex: 1 1 auto;
+	font-size: 1.618rem;
 }
 
 .ui.form, .ui.form > * {
@@ -38,13 +46,23 @@ a {
 }
 
 .ui.form input[type=text] {
-	width: 200px;
+	width: 150px;
+	margin: 5px;
 }
+
+.ui.orange.button, .ui.label {
+	margin: 5px;
+}
+
 
 .top {
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
+}
+
+.top > * {
+	margin: 10px;
 }
 
 #main {
@@ -60,7 +78,7 @@ h1.ui.header {
 }
 
 #footer {
-	margin: 10px 40%;
+	margin: 10px auto;
 }
 
 li:hover {
