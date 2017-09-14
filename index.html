@@ -4,35 +4,37 @@
 	<title>Wikipedia Viewer</title>
 
 	<meta charset="UTF-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
-
-
 </head>
 <body>
-  
-	<div class="ui raised very padded text container segment" id="main">
-	  	<h1 class="ui header">Wiki Viewer</h1>
-		  <div class="ui fluid form">
-		    <input type="text" placeholder="sample wiki page" id="searchbar">
-		    <button onclick="init()" class="ui inverted orange button">Search</button>
-		  	<div class="ui left pointing label">(leave blank for a random page)</div>
-		  </div>
+	
+	<div class="ui fluid container" id="main">
+			<h1 class="ui header">Wiki Viewer</h1>
+		<div class="top">
+			
+			<div class="ui form">
+				<input type="text" placeholder="sample wiki page" id="searchbar">
+				<button onclick="init()" class="ui orange button">Search</button>
+				<div class="ui left pointing label">(leave blank for a random page)</div>
+			</div>
+			
+		</div>
 
-	    <ul>
-	    </ul>
-	</div>
+		<ul>
+		</ul>
 
-	<div class="ui container">
 		<div class="ui pointing above label" id="footer">
-	      Made with <3 by <a href="https://www.linkedin.com/in/jake-tripp/" target="_blank">Jake Tripp</a>
-	    </div>
+			Made with <3 by <a href="http://jaketripp.com/" target="_blank">Jake Tripp</a>
+		</div>
 	</div>
 
 <script src="app.js"></script>

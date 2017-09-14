@@ -42,12 +42,13 @@ var titleParam;
 // AUXILIARY FUNCTIONS
 // ===================
 
+// splits a string by spaces, joins it with '_', then splits by apostrophes, joins by '%27'
 function formatURLParam(string) {
-  var str = string.split(' ');
-  str = str.join('_');
-  str = str.split("'");
-  str = str.join("%27");
-  return str;
+	var str = string.split(' ');
+	str = str.join('_');
+	str = str.split("'");
+	str = str.join("%27");
+	return str;
 }
 
 // ==============
@@ -55,42 +56,50 @@ function formatURLParam(string) {
 // ==============
 
 function getData(string) {
-  $(document).ready(function() {
-    var str = formatURLParam(string);
-    var url = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&utf8=&origin=*&srsearch=" + str;      
-    $.ajax({
-      url: url,
-      success: function(result){
-        var arr = result.query.search;
-        titleParam = arr[0].title;
-        for (var i = 1; i < arr.length; i++) {
-          var title = formatURLParam(arr[i].title)
-          titleParam+= ("|" + title) 
-        }
-        getPageExtracts(titleParam);
-      }
-    });
-  });
+	$(document).ready(function() {
+		var str = formatURLParam(string);
+		var url = "https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&utf8=&origin=*&srsearch=" + str;      
+		$.ajax({
+			url: url,
+			success: function(result){
+				var arr = result.query.search;
+				// start out titleParam as the first title string
+				titleParam = arr[0].title;
+				for (var i = 1; i < arr.length; i++) {
+					// build the title string like 'title|title_of_titles|tito%27s_titles'
+					var title = formatURLParam(arr[i].title)
+					titleParam+= ("|" + title) 
+				}
+				getPageExtracts(titleParam);
+			}
+		});
+	});
 }
 function getPageExtracts(param) {
-  var url = "https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exsentences=1&explaintext&exintro&exlimit=10&utf8=&titles=" + param;      
-  $.ajax({
-    url: url,
-    success: function(result){
-      var arr = result.query.pages;
-      for (var key in arr) {
-        $('ul').append('<a href="https://en.wikipedia.org/?curid=' + arr[key].pageid + '" + target="_blank"><li>' + '<h5>' + arr[key].title + '</h5>' + arr[key].extract + '</li></a>')
-      }
-    }
-  });
+
+	var url = "https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exsentences=1&explaintext&exintro&exlimit=10&utf8=&titles=" + param;      
+	$.ajax({
+		url: url,
+		success: function(result){
+			var arr = result.query.pages;
+			for (var key in arr) {
+				$('ul').append('<a href="https://en.wikipedia.org/?curid=' + arr[key].pageid + '" + target="_blank"><li>' + '<h5>' + arr[key].title + '</h5>' + arr[key].extract + '</li></a>')
+			}
+		}
+	});
 }
 
+// init attached to search button
+// clear current items
+// if search entry is blank, open random article
+// else do the search (getData)
+
 function init() {
-  $('ul').empty();
-  var search = $('#searchbar').val();
-  if (search === '') {
-    window.open("https://en.wikipedia.org/wiki/Special:Random");
-  }
-  getData(search);
+	$('ul').empty();
+	var search = $('#searchbar').val();
+	if (search === '') {
+		window.open("https://en.wikipedia.org/wiki/Special:Random");
+	}
+	getData(search);
 }
 
