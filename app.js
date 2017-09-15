@@ -113,7 +113,9 @@ function search() {
 		window.open("https://en.wikipedia.org/wiki/Special:Random");
 	}
 	getData(search);
-	makeURLsMobile();
+	setTimeout(function(){
+		makeURLsMobile();
+	}, 2000);
 }
 
 // trigger search with enter key
