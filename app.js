@@ -96,6 +96,16 @@ function getPageExtracts(param) {
 // if search entry is blank, open random article
 // else do the search (getData)
 
+function makeURLsMobile(){
+	if (window.screen.width < 750) {
+		$('ul a').each(function(){
+			var link = this.href;
+			var mobileLink = link.substring(0, 11) + 'm.' + link.substring(11);
+			$(this).attr('href', mobileLink);
+		});
+	}
+}
+
 function search() {
 	$('ul').empty();
 	var search = $('#searchbar').val();
@@ -103,6 +113,7 @@ function search() {
 		window.open("https://en.wikipedia.org/wiki/Special:Random");
 	}
 	getData(search);
+	makeURLsMobile();
 }
 
 // trigger search with enter key
